@@ -27,13 +27,12 @@ function addItemWithValidation(newLabel){
         addItemToStorage(newLabel);
     }
 }
-       
-
 
 function onAddItemSubmit (e){
     e.preventDefault();
     const newLabel = itemInput.value;
     if (isEditing){
+        if (!validateInput(newLabel)){
         // Remove old item
         for (const item of itemList.children) {
             if (item.textContent.trim() === oldLabel){
@@ -44,10 +43,13 @@ function onAddItemSubmit (e){
         localStorage.setItem('items', JSON.stringify(filteredItems));
         // Validate & Add item
         addItemWithValidation(newLabel);
-
+        
         submitBtn.style.background = 'black';
         submitBtn.textContent = 'Add Item';
         isEditing = false;
+        } else {
+            alert("error");
+        }
     } else {
         addItemWithValidation(newLabel)
        
