@@ -47,14 +47,17 @@ function onAddItemSubmit (e){
         submitBtn.style.background = 'black';
         submitBtn.textContent = 'Add Item';
         isEditing = false;
+        itemInput.value = '';
         } else {
             alert("error");
+            itemInput.value = oldLabel;
         }
     } else {
-        addItemWithValidation(newLabel)
+        addItemWithValidation(newLabel);
+        itemInput.value = '';
        
     }
-    itemInput.value = ''
+    
     checkUI();
 }
 
